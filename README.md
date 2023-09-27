@@ -2,7 +2,7 @@
 
 ***STEP1 - Install Python & PIP on your Wazuh server*** <br>
 
-This lab assumes you are using the provided Wazuh VirtualBox image (.OVA) that I used, which did not have Python preinstalled.
+This lab assumes you are using the Wazuh VirtualBox image (.OVA), which might not have Python preinstalled.
 
 ```
 sudo yum update
