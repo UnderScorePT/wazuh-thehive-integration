@@ -10,14 +10,14 @@ sudo yum install python3
 ```
 ***STEP2 - Install The Hive Python module using PIP*** <br>
 
-This is the Python module that will be referenced in the custom integration script that we will be creating in the next step. I have tested this module with version 5.2.1 of The Hive and its working at the time of this writeup.
+This is the Python module that will be referenced in the custom integration script that we will be creating in the next step.
 
 ```
 sudo /var/ossec/framework/python/bin/pip3 install thehive4py
 ```
 ***STEP3 - Creating the custom integration script*** <br>
 
-The below script will need to be created in /var/ossec/integrations/ and called custom-w2thive.py I used nano to create/edit the script, however, you can use whatever text editor you like for this.<br>
+The below script will need to be created in /var/ossec/integrations/ and called custom-w2thive.py<br>
 <br>
 This script has the `lvl_threshold` variable set to `0`, meaning that all alerts created by Wazuh will be forwarded to The Hive. This has the potential to create a lot of noise if you have a lot of agents you are monitoring on your network so you may want to consider setting this to a higher level to only alert on more serious classifications. Please check the Wazuh ruleset classifications in the [manual](https://documentation.wazuh.com/current/user-manual/ruleset/rules-classification.html) they range from 0 - 15 with explanations for each. 
 
@@ -213,7 +213,7 @@ sudo chown root:wazuh /var/ossec/integrations/custom-w2thive
 
 ***STEP5 - Final integration step - enabling the integration in the Wazuh manager configuration file*** <br>
 
-You will need to use your preferred text editor to modify `/var/ossec/etc/ossec.conf` and insert the below code. You will need to insert the IP address for your The Hive server inside the `<hook_url>` tags as well as insert your API key inside the `<api_key>` tags. I have placed the code in my case just under the `</global>` tag in the config, make sure that your indentations match up to avoid running into issues.
+You will need to modify `/var/ossec/etc/ossec.conf` and insert the below code. You will need to insert the IP address for your The Hive server inside the `<hook_url>` tags as well as insert your API key inside the `<api_key>` tags.
 
 ```
 <ossec_config>
